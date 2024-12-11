@@ -1,0 +1,10 @@
+{
+  "workspace": ["./client", "./server", "./implementation"],
+  "tasks": {
+    "client": "deno task -c client/deno.json dev",
+    "server": "deno task -c server/deno.json dev"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
