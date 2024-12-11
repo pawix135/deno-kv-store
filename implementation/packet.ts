@@ -5,10 +5,11 @@ import { bytesToText } from '@pawix/implementation'
  * @module
  */
 
-export const PACKET_TYPE_LENGTH = 1
-export const PACKET_KEY_LENGTH = 2;
-export const PACKET_PAYLOAD_LENGTH = 2;
-export const PACKET_MAX_KEY_LENGTH = 32;
+const PACKET_TYPE_LENGTH = 1
+const PACKET_KEY_LENGTH = 2;
+const PACKET_PAYLOAD_LENGTH = 2;
+const PACKET_MAX_KEY_LENGTH = 32;
+const PACKET_MAX_PAYLOAD_LENGTH = 1024;
 
 export enum PACKET_TYPE {
   STRING = 0,
@@ -38,6 +39,15 @@ export class KVPacket {
         throw new Error("Unknown packet type")
     }
     const keyBytes = new TextEncoder().encode(key);
+
+
+    if (keyBytes.byteLength > PACKET_MAX_KEY_LENGTH) {
+      throw new Error("Key is too long")
+    }
+
+    if (payloadBytes.byteLength > PACKET_MAX_PAYLOAD_LENGTH) {
+      throw new Error("Payload is too long")
+    }
 
     const bufferSize = PACKET_TYPE_LENGTH + PACKET_KEY_LENGTH + PACKET_PAYLOAD_LENGTH + key.length + payloadBytes.length;
     const buffer = new ArrayBuffer(bufferSize)
