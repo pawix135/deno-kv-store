@@ -1,8 +1,11 @@
 {
   "workspace": ["./client", "./server", "./implementation"],
   "tasks": {
-    "client": "deno task -c client/deno.json dev",
-    "server": "deno task -c server/deno.json dev"
+    "server:server_ws": "deno task -c server/deno.json server_ws",
+    "server:client_ws": "deno task -c server/deno.json client_ws",
+    "server:server_tcp": "deno task -c server/deno.json server_tcp",
+    "server:client_tcp": "deno task -c server/deno.json client_tcp"
+
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
