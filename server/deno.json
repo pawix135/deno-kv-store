@@ -2,6 +2,9 @@
   "name": "@pawix/server",
   "exports": "./mod.ts",
   "tasks": {
-    "dev": "deno run -A --watch mod.ts"
+    "client_ws": "deno run -A --watch tests/websocket_tests/client.ts",
+    "client_tcp": "deno run -A --watch tests/tcp_tests/client.ts",
+    "server_ws": "deno run -A --watch mod.ts -w",
+    "server_tcp": "deno run -A --watch mod.ts"
   }
 }
